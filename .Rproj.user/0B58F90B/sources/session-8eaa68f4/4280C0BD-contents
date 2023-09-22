@@ -1,0 +1,260 @@
+---
+title: "Analytical Dataset Orientation (ADO) for MARS REDCap Questionnaire Data"
+date: today
+abstract: "This is a document designed to orient analyst to data curated from REDCap questionnaires. The codebook and all datasets can be found in the *MARS Pre-Curated Data/Visit/* folder"
+format: pdf
+editor: visual
+toc: true
+toc-depth: 4
+number-sections: true
+number-depth: 4
+---
+
+## Summaries of Curated Datasets
+
+### General Inclusion Criteria
+
+All questionnaire datasets include RSR IDs for all patients in the EMA dataset regardless of whether that patient filled out surveys for a particular event. As such, some observations (rows) may have no data apart from ID and completion status.
+
+To be included in the EMA dataset (i.e., be eligible for MRT), patients met all of the inclusion criteria and none of the exclusion criteria
+
+**Inclusion criteria:**
+
+-   18 years of age or older
+
+-   Current smoker with an average of at least 3 cigarettes/day
+
+-   Motivated to quit within the next 30 days
+
+-   Have a valid home address and functioning telephone number
+
+-   Can speak, read, and write in English
+
+-   Agrees to not engage in study procedures (like completing surveys on the phone or visits with the staff) while operating a vehicle or machinery
+
+-   If completing visits remotely, have access to reliable WiFi to complete study visits and questionnaires
+
+-   Completed Visit 1
+
+**Exclusion criteria:**
+
+-   Contraindication for nicotine patch or nicotine gum
+
+-   Current use of tobacco cessation medications or other aids (i.e., buproprion)
+
+-   Pregnancy or lactation (as self-reported during screening)
+
+### Codebook
+
+There is one codebook file for the MARS questionnaire data (*codebook.xlsx*). The first spreadsheet provides mapping between the events, surveys, and variables. Variable labels are also included for clarification.
+
+The remaining spreadsheets within the codebook correspond to each of the six datasets. Each spreadsheet contains the following information:
+
+-   Variable Name: denotes the variable name as it appears in the dataset
+
+-   Label: contains the REDCap-provided description of the variable
+
+-   Skip Logic: indicates what, if any, skip logic was required for a subject to be asked the question corresponding to the variable
+
+-   Required Field: indicates whether the variable was required in the REDCap survey. Most variables were required, but not all
+
+-   Type: indicates whether the variable is numeric, categorical, or a date
+
+-   Range: for numeric and date variables, the range of patient responses
+
+-   Mean: for numeric variables, the average of patient responses
+
+-   Values: possible values each variable could take. This includes response options for categorical variables, NA for all variables, and -99 to indicate skip logic for variables that could be skipped
+
+-   Frequency: frequencies of each category in the Values column, totaling 114 patients for each variable
+
+-   Percent: percentages of each category in the Values column, totaling 100% for each variable
+
+### Variable Naming
+
+Generally, variables that come from the same survey have the same prefix based on the abbreviation of the survey name (For example, tsam\_ as the prefix for the Texas smoking abstinence motivation survey).
+
+The exceptions to this are as follows:
+
+-   Completion status and timestamp variables, which begin with the full name of the survey in REDCap (e.g., smok_abst_motiv_timestamp instead of tsam_timestamp)
+
+-   Surveys filled out for the screening questionnaire and nudge tracking events
+
+-   National institute on drug abuse questionnaire: while some variables begin with "nida", others begin with the drug that corresponds to the question (marijuana_1, cocaine_1, etc.)
+
+-   Some of the summary scale measure variables, which are listed out in section 2.2
+
+### Datasets
+
+There are six questionnaire datasets: *screening_quest.csv*, *v1_baseline_quest.csv*, *v2_quest.csv*, *v3_quest.csv*, *v4_quest_6_month.csv*, and *nudge_tracking.csv*. Each corresponds to a REDCap event and contains all surveys filled out by either the study coordinator or researcher for that event. The specific surveys that patients needed to fill out for visits 1-4 are listed on the first slide of the *MARS Moderator Variables.pptx* presentation. For all datasets, one observation (row) corresponds to one patient.
+
+## Data Cleaning Decisions
+
+### Summary Scale Measures
+
+The types of summary scale measures are listed below along with the surveys and summary scale variable names for each type. Further descriptions of each of these are in the codebook. Any surveys that are not listed have no summary scale measures.
+
+Scoring references for these scales are in the *measures_scoring* folder; sources are in the *measures_ref* folder. Variables were often recoded or reverse coded to create these scales; the recoded variables are what appear in the curated datasets.
+
+#### Mean
+
+For each patient, the mean was taken of all contributing variables given an at least 70% response rate from the given patient.
+
+-   Brief health literacy: **health_lit**
+
+-   Wisconsin smoking withdrawal scale: **wsws_craving**
+
+-   Smoking self-efficacy: **se_social**, **se_habit**, **se_negaff**, **SE_total**
+
+-   Texas smoking abstinence motivation: **TSAM_Total**
+
+-   Financial strain: **FinancialStrain**
+
+-   Food security: **food_security_mean**
+
+-   Subjective socioeconomic status: **SSSladders**
+
+-   Neighborhood disorganization: **nd_mean**
+
+-   Adverse childhood experience questionnaire: **ace_hd_mean**, **ace_epa_mean**, **ace_sa_mean**, **ace_overall_mean**
+
+-   Five-facet mindfulness: **ffmq_nonjudge**, **ffmq_aware**, **FFMQ_total**
+
+-   Mindful attention awareness scale: **maas_total**
+
+-   Shift and persist: **shift**, **persist**
+
+-   Barratt impulsiveness scale: **bis_total**
+
+-   Social vigilance: **sv_mean**
+
+-   Anxiety index: **ai_social**, **ai_cognitive**, **ai_physical**, **ai_overall**
+
+-   Decentering: **decenter_mean**
+
+-   Distress tolerance scale: **dts_tolerance**, **dts_absorption**, **dts_appraisal**, **dts_regulation**, **dts_total**
+
+-   Snaith_Hamilton pleasure scale: **shaps**
+
+-   Perceived stress: **perceived_stress**
+
+-   Gratitude questionnaire: **gratitude**
+
+-   Modified differential emotions scale: **mdes_neg_mean**, **mdes_pos_mean**
+
+-   Interpersonal support evaluation list: **isel_belonging**, **isel_appraisal**, **isel_tangible**, **isel_total**
+
+-   UCLA loneliness scale: **uclals_mean**
+
+-   Wisconsin inventory of smoking dependence motives: **wisdm_automaticity**, **wisdm_losscontrol**, **wisdm_tolerance**, **widsm_craving**, **wisdm_total**
+
+-   Rotterdam emotional intelligence scale: **reis_self_appraise_mean**, **reis_other_appraise_mean**, **reis_self_regulate_mean**, **reis_other_regulate_mean**, **reis_overall_mean**
+
+-   Need for cognition scale: **ncs_mean**
+
+-   Ten-item personality inventory: **tipi_E_mean**, **tipi_A_mean**, **tipi_C_mean**, **tipi_S_mean**, **tipi_O_mean**
+
+-   Self-regulation questionnaire: **srq_mean**
+
+#### Sum
+
+For each patient, the sum was taken of all contributing variables given a 100% response rate from the given patient.
+
+-   Heaviness of smoking index: **Nicotine_dep**
+
+-   At-risk drinking behaviors: **num_drinks**, **ardb_heavy_days**
+
+-   National institute on drug abuse questionnaire: **marijuana_SI**, **cocaine_SI**, **stimulants_SI**, **methamphetamine_SI**, **inhalants_SI**, **sedatives_SI**, **hallucinogens_SI**, **streetopioids_SI**, **prescriptopioids_SI**, **other_SI**
+
+-   Adverse childhood experience questionnaire: **ace_total**
+
+-   MacArthur lifetime discrimination: **mld_total**
+
+-   Everyday discrimination scale: **eds_sum**
+
+-   Patient health questionnaire - depression: **PHQ_depresh**
+
+-   Generalized anxiety disorder questionnaire: **gad_anx**
+
+-   Physical activity questionnaire\*: **paq_total_MET**, **paq_total_week**, **paq_total_day**, **paq_work_day**, **paq_travel_day**, **paq_rec_day**, **paq_pct_work**, **paq_pct_travel**, **paq_pct_rec**
+
+\*Some of the PAQ summary scales involve division (by 7 for "\_day" variables and by 100 for "pct" variables, but are first based on a sum of variables
+
+#### Categorical
+
+Each patient was assigned a 0/1 (absence/presence) or some condition (e.g., "Lower Risk", "Moderate Risk", "High Risk") based on whether they met criteria. All relevant questions had to be answered for the given patient.
+
+-   Patient health questionnaire - alcohol: **phqa_problem**
+
+-   At-risk drinking behaviors: **ardb_heavy**, **ardb_monday**, **ardb_tuesday**, **ardb_wednesday**, **ardb_thursday**, **ardb_friday**, **ardb_saturday**, **ardb_sunday**, **ardb_monday**
+
+-   National institute on drug abuse questionnaire: **marijuana_risk**, **cocaine_risk**, **stimulants_risk**, **methamphetamine_risk**, **inhalants_risk**, **sedatives_risk**, **hallucinogens_risk**, **streetopioids_risk**, **prescriptopioids_risk**, **other_risk**
+
+-   Physical activity questionnaire: **paq_meet_req**, **paq_engaged_work**, **paq_engaged_travel**, **paq_engaged_rec**, **paq_engaged_vigorous**
+
+#### Count
+
+For each patient, a count was taken of all contributing variables regardless of the given patient's response rate.
+
+-   Social network index: **sni_count**, **sni_people**, **sni_active**
+
+### Completion Status
+
+While REDCap does provide a completion status for surveys, it was not granular enough for our analysis. It was therefore recoded:
+
+For each survey:
+
+-   Complete: All questions were either answered or skipped according to REDCap-defined skip logic
+
+-   Incomplete: Some, but not all questions were either answered or skipped
+
+-   No Response: No questions were answered
+
+The completion status for each event was then determined:
+
+-   Complete: All surveys were marked Complete
+
+-   Incomplete: Some surveys were marked Complete or at least one survey was marked Incomplete
+
+-   No Response: All surveys were marked No Response
+
+## Programming Tips for Working with the Data
+
+### Data import
+
+Each dataset is available in .CSV, .RDS, and .DTA format. For each of the common statistical programming tools, we describe which version of the data we recommend using:
+
+-   R: Use the .RDS file. This will ensure the datetime's functionality around time zones is preserved.
+
+-   Python: Import the .RDS file, which can be done by calling R (`rpy2` package) or using the `pyreadr` package. The latter is probably easier.
+
+-   Stata: Use the .DTA files, which have most (or "all" if the .rds file only has variable and value labels) of the same data attributes as the .RDS file above (e.g. variable and value labels).
+
+-   SAS: Import the .DTA files using the `proc import` procedure.
+
+### ID Variables
+
+Each dataset contains two ID variables. To link the questionnaire data to the EMA data, use the **mars_id** variable. The **record_id** variable is a REDCap-generated ID with likely no use as a primary key.
+
+### Timestamps
+
+The timestamp variables are generated by REDCap and indicate the date of completion of the associated survey. To determine the start and stop dates of questionnaire completion, reference the timestamp variable of the first and last survey in that event as listed below. Note that the screening and nudge tracking events each have only one survey.
+
+| **Event**              | **Start**                   | **Stop**                     |
+|---------------------|-------------------------|--------------------------|
+| **Screening**          | basic_demography_timestamp  | basic_demography_timestamp   |
+| **Visit 1 - Baseline** | demo_rel_con_bas_timestamp  | usability_v1_timestamp       |
+| **Visit 3**            | wsws_timestamp              | tac_w_nrt_v2_timestamp       |
+| **Visit 3**            | wsws_timestamp              | usability_v3_timestamp       |
+| **Visit 4 - 6-month**  | demo_rel_con_v4_timestamp   | tobacco_history_v4_timestamp |
+| **Nudge Tracking**     | nudge_tracking_v2_timestamp | nudge_tracking_v2_timestamp  |
+
+## Limitations
+
+### Required Fields
+
+While in theory all fields for surveys that patients filled out should have been marked as required to finish the survey, some were not marked as required. This may have resulted in inflated nonresponse rates for questions that respondents felt did not apply to them (instead of putting 0 or selecting an option like "does not apply," they simply skipped the question).
+
+### Comparison to BreakFree and OnTrack
+
+All summary scales that are shared between BreakFree/OnTrack and MARS have the same summary variable names. These are coded in the same way with one notable exception. The response options for the Everyday Discrimination Scale (EDS) changed for MARS, so its summary scale measure cannot be considered equivalent to the EDS scale for BF/OT.
