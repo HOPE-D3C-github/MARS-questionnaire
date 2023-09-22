@@ -11,5 +11,5 @@ path_cxwalk <- paste0(pre_box, "Box/mhealth_data_management/MARS/MARS - data sha
 path_id_check <- paste0(pre_box, "Box/MARS Curation Workspace/Questionnaire/General Inputs/dat_visit_dates_V1_only.rds")
 
 # outputs
-path_output_data <- paste0(pre_box, "Box/MARS Curated Data/Questionnaire/Release v1.0.0/")
+path_output_data <- paste0(pre_box, "Box/MARS Curated Data/Questionnaire/Release v1.0.0/Data for analysis/")
 
