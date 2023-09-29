@@ -14,4 +14,4 @@ This repo contains all deidentified code used to curate the MARS questionnaire d
       +  *codebook_summary*: add frequency counts, ranges, and means to variables in codebook where applicable
 
 ## Documentation
-  - **MARS REDCap ADO.qmd**: Analytical Dataset Orientation for the curated data: 
+  - **MARS REDCap ADO.qmd**: Analytical Dataset Orientation for the curated data 
