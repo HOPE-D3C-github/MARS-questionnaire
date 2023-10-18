@@ -1626,7 +1626,9 @@ id_mapping <- data_final %>%
             by = join_by(subject_id == rsr_id)) %>%
   mutate(mars_id = coalesce(mars_id, grafana_id)) %>%
   select(record_id, mars_id) %>%
-  unique()
+  unique() %>%
+  # remove pilot participants
+  filter(!mars_id %in% c("mars_1", "mars_2", "mars_3"))
   
 # initialize codebook with event mapping worksheet
 codebook <- createWorkbook()

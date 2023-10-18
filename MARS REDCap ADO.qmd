@@ -232,9 +232,11 @@ Each dataset is available in .CSV, .RDS, and .DTA format. For each of the common
 
 -   SAS: Import the .DTA files using the `proc import` procedure.
 
-### ID Variables
+### Joins/Merges between Datasets
 
-Each dataset contains two ID variables. To link the questionnaire data to the EMA data, use the **mars_id** variable. The **record_id** variable is a REDCap-generated ID with likely no use as a primary key.
+The primary key between the EMA and Questionnaire data is **grafana_id**. All other variable names are unique to the dataset they are in, thus analysts can safely perform joins between the datasets using this ID variable without worrying about duplicate or overlapping variable names. The **record_id** variable in the Questionnaire data is a REDCap-generated ID with no use as a primary key.
+
+All values of **grafana_id** are identical between the EMA and Questionnaire data **except** for mars_37. This patient completed V1, but never used the equipment and was lost to follow-up without equipment return. As such, this patient is in the Questionnaire data, but not the EMA data. The questionnaire data has 111 patients; the EMA data has 110. If interested in mars_37, please take care and check that this ID isn't dropped in the merge between the EMA and Questionnaire data.
 
 ### Timestamps
 
